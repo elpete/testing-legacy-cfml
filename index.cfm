@@ -1,30 +1,40 @@
-<cfset allEvents = createObject('component', 'Events').getAllEvents() />
+<cfoutput>
+	<cfset allEvents = createObject('component', 'Events').getAllEvents() />
 
-<h1 class="text-center">Events</h1>
+	<h1 class="text-center">Events</h1>
 
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th style="width: 60%;">Event Name</th>
-			<th>Event Date</th>
-			<th>RSVP</th>
-		</tr>
-	</thead>
-	<tbody>
-		<cfif allEvents.RecordCount EQ 0>
+	<table class="table table-hover">
+		<thead>
 			<tr>
-				<td colspan="3" class="text-center">No Events Yet!</td>
-				</tr>
-		<cfelse>
-			<cfoutput query="allEvents">
+				<th style="width: 60%;">Event Name</th>
+				<th>Event Date</th>
+				<th>RSVP</th>
+			</tr>
+		</thead>
+		<tbody>
+			<cfif allEvents.RecordCount EQ 0>
 				<tr>
-					<td>#name#</td>
-					<td>#event_date#</td>
-					<td>
-						<button class="btn btn-default">RSVP</button>
+					<td colspan="3" class="text-center">
+						No Events Yet!
+						<br />
+						<cfif NOT structKeyExists(session, "user_id")>
+							<a href="/login.cfm">Log In</a> to create one now!
+						<cfelse>
+							<a href="/event.cfm">Create one now!</a>
+						</cfif>
 					</td>
 				</tr>
-			</cfoutput>
-		</cfif>
-	</tbody>
-</table>
+			<cfelse>
+				<cfloop query="allEvents">
+					<tr>
+						<td>#name#</td>
+						<td>#event_date#</td>
+						<td>
+							<button class="btn btn-default">RSVP</button>
+						</td>
+					</tr>
+				</cfloop>
+			</cfif>
+		</tbody>
+	</table>
+</cfoutput>

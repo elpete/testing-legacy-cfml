@@ -2,8 +2,7 @@
 
 	<cffunction name="getAllEvents">
 		<cfquery name="events">
-			SELECT *
-			  FROM events
+			SELECT * FROM events
 		</cfquery>
 
 		<cfreturn events />
