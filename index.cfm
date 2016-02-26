@@ -28,9 +28,9 @@
 				<cfloop query="allEvents">
 					<tr>
 						<td>#name#</td>
-						<td>#event_date#</td>
+						<td>#DateFormat(event_date, 'DD MMM YYYY')#</td>
 						<td>
-							<button class="btn btn-default">RSVP</button>
+							<button class="btn btn-sm btn-default">RSVP</button>
 						</td>
 					</tr>
 				</cfloop>
