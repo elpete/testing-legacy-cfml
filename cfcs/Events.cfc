@@ -1,8 +1,12 @@
 <cfcomponent>
 
-	<cffunction name="getAllEvents">
+	<cffunction name="getAllEventsByUserId">
+		<cfargument name="user_id" />
+
 		<cfquery name="events">
-			SELECT * FROM events
+			SELECT *
+			FROM events
+			WHERE user_id = <cfqueryparam value="#arguments.user_id#" cfsqltype="cf_sql_varchar" />
 		</cfquery>
 
 		<cfreturn events />

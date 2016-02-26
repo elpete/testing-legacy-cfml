@@ -8,7 +8,7 @@
 			
 		</div>
 	<cfelse>
-		<cfset allEvents = createObject('component', 'Events').getAllEvents() />
+		<cfset allEvents = createObject('component', 'cfcs.Events').getAllEventsByUserId(session.user_id) />
 
 		<h1 class="text-center">Events</h1>
 
