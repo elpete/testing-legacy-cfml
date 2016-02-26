@@ -1,3 +1,3 @@
 <cfset structDelete(session, 'user_id') />
 
-<cflocation url="/" />
+<cflocation url="/" addtoken="false" />

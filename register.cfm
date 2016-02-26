@@ -5,11 +5,11 @@
 		<cfset errorMessage = "Password and Password Confirmation must match." />
 	<cfelse>
 		<cftry>
-			<cfset user_id = createObject("component", "Users").createUser(form.email, form.password) />
+			<cfset user_id = createObject("component", "cfcs.Users").createUser(form.email, form.password) />
 
 			<cfset session.user_id = user_id />
 
-			<cflocation url="/" />
+			<cflocation url="/" addtoken="false" />
 
 			<cfcatch>
 				<cfset errorMessage = "Could not create the user." />

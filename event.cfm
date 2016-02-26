@@ -1,14 +1,18 @@
 <cfparam name="errorMessage" default="" />
 
+<cfif NOT structKeyExists(session, "user_id")>
+	<cflocation url="/" addtoken="false" />
+</cfif>
+
 <cfif structKeyExists(form, "create")>
 	<cfif NOT structKeyExists(form, "name") OR form.name EQ "">
 		<cfset errorMessage = "Must provide an event name." />
 	<cfelseif NOT structKeyExists(form, "date") OR form.date EQ "">
 		<cfset errorMessage = "Must provide an event date." />
 	<cfelse>
-		<cfset createObject("component", "Events").createEvent(form.name, form.date) />
+		<cfset event_id = createObject("component", "cfcs.Events").createEvent(form.name, form.date) />
 		
-		<cflocation url="/" />
+		<cflocation url="/view-event.cfm?event=#event_id#" addtoken="false" />
 	</cfif>
 </cfif>
 

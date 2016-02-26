@@ -22,6 +22,12 @@
                 Event Planning
               </a>
             </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/rsvp.cfm">RSVP</a></li>
+                <cfif structKeyExists(session, "user_id")>
+                    <li><a href="/event.cfm">New Event</a></li>
+                </cfif>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <cfif NOT structKeyExists(session, "user_id")>
                     <li><a href="/register.cfm">Register</a></li>

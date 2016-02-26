@@ -1,40 +1,57 @@
 <cfoutput>
-	<cfset allEvents = createObject('component', 'Events').getAllEvents() />
+	<cfif NOT structKeyExists(session, "user_id")>
 
-	<h1 class="text-center">Events</h1>
+		<div class="text-center">
+			<h4><a href="/rsvp.cfm">Click Here</a> to RSVP to an Event,</h4>
+			<h4><a href="/login.cfm">Log In</a> to manage your Events,</h4>
+			<h4>or <a href="/register.cfm">Register</a> to start creating your own Events</h4>
+			
+		</div>
+	<cfelse>
+		<cfset allEvents = createObject('component', 'Events').getAllEvents() />
 
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th style="width: 60%;">Event Name</th>
-				<th>Event Date</th>
-				<th>RSVP</th>
-			</tr>
-		</thead>
-		<tbody>
-			<cfif allEvents.RecordCount EQ 0>
+		<h1 class="text-center">Events</h1>
+
+		<table class="table table-hover">
+			<thead>
 				<tr>
-					<td colspan="3" class="text-center">
-						No Events Yet!
-						<br />
-						<cfif NOT structKeyExists(session, "user_id")>
-							<a href="/login.cfm">Log In</a> to create one now!
-						<cfelse>
-							<a href="/event.cfm">Create one now!</a>
-						</cfif>
-					</td>
+					<th>Event Name</th>
+					<th>Event Date</th>
+					<th>Pending</th>
+					<th>Coming</th>
+					<th>Not Coming</th>
+					<th></th>
 				</tr>
-			<cfelse>
-				<cfloop query="allEvents">
+			</thead>
+			<tbody>
+				<cfif allEvents.RecordCount EQ 0>
 					<tr>
-						<td>#name#</td>
-						<td>#DateFormat(event_date, 'DD MMM YYYY')#</td>
-						<td>
-							<button class="btn btn-sm btn-default">RSVP</button>
+						<td colspan="6" class="text-center">
+							No Events Yet!
+							<br />
+							<cfif NOT structKeyExists(session, "user_id")>
+								<a href="/login.cfm">Log In</a> to create one now!
+							<cfelse>
+								<a href="/event.cfm">Create one now!</a>
+							</cfif>
 						</td>
 					</tr>
-				</cfloop>
-			</cfif>
-		</tbody>
-	</table>
+				<cfelse>
+					<cfloop query="allEvents">
+						<cfset RSVPCounts = createObject("component", "cfcs.RSVP").getRSVPCountsForEvent(allEvents.id) />
+						<tr>
+							<td><a href="/view-event.cfm?event=#allEvents.id#">#allEvents.name#</a></td>
+							<td>#DateFormat(allEvents.event_date, 'MMMM D, YYYY')#</td>
+							<td class="text-center">#RSVPCounts.pending_count#</td>
+							<td class="text-center">#RSVPCounts.accepted_count#</td>
+							<td class="text-center">#RSVPCounts.rejected_count#</td>
+							<td>
+								<a href="/view-event.cfm?event=#allEvents.id#" class="btn btn-sm btn-default">Send Invites</a>
+							</td>
+						</tr>
+					</cfloop>
+				</cfif>
+			</tbody>
+		</table>
+	</cfif>
 </cfoutput>

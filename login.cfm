@@ -1,12 +1,12 @@
 <cfparam name="errorMessage" default="" />
 
 <cfif structKeyExists(form, "login")>
-	<cfset user_id = createObject("component", "Users").findUserByEmailAndPassword(form.email, form.password) />
+	<cfset user_id = createObject("component", "cfcs.Users").findUserByEmailAndPassword(form.email, form.password) />
 
 	<cfif user_id NEQ 0>
 		<cfset session.user_id = user_id />
 
-		<cflocation url="/" />
+		<cflocation url="/" addtoken="false" />
 	</cfif>
 
 	<cfset errorMessage = "Invalid credentials." />
