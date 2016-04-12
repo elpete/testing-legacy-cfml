@@ -1,3 +1,14 @@
 {
-    "private": true
+    "private":true,
+    "dependencies":{
+        
+    },
+    "installPaths":{
+        "testbox":"testbox",
+        "cfselenium":"cfselenium"
+    },
+    "devDependencies":{
+        "testbox":"2.3.0+00044",
+        "cfselenium":"Ortus-Solutions/CFSelenium"
+    }
 }
