@@ -14,7 +14,10 @@ component extends='cfselenium.BaseSpec' {
                     when('I click register, fill in the form, and click `Register`', function() {
                         then('I should be logged in and see my Events dashboard', function() {
                             selenium.open('/');
-                            expect(selenium.getTitle()).toBe('Event Planning — A Legacy Testing Worksho');
+                            expect(selenium.getTitle()).toBe('Event Planning — A Legacy Testing Workshop');
+                            selenium.click('link=Register');
+                            selenium.waitForPageToLoad('30000');
+                            expect(selenium.isTextPresent('Register')).toBeTrue();
                         });
                     });
                 });
