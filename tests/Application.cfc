@@ -10,4 +10,9 @@ component {
     rootPath = REReplaceNoCase(this.mappings['/tests'], 'tests(\\|/)', '');
     this.mappings['/root'] = rootPath;
 
+    this.datasources['eventplanning'] = {
+        class: 'org.gjt.mm.mysql.Driver',
+        connectionString: 'jdbc:mysql://localhost:3306/eventplanning?user=root&useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=true'
+    };
+    this.datasource = 'eventplanning';
 }
