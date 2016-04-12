@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS eventplanning;
 CREATE DATABASE eventplanning;
 USE eventplanning;
 CREATE TABLE events (id INTEGER AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100) NOT NULL, event_date DATE NOT NULL, user_id INTEGER NOT NULL);
