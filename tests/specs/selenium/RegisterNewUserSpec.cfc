@@ -7,6 +7,13 @@ component extends='cfselenium.BaseSpec' {
         super.afterAll();
     }
 
+    /**
+    * @afterEach
+    */
+    function cleanUpDatabase() {
+        queryExecute("DELETE FROM users WHERE email = 'bob@example.com'");
+    }
+
     function run() {
         feature('Registering for the site', function() {
             scenario('A new user registering successfully for the site', function() {
