@@ -13,7 +13,8 @@ component extends='cfselenium.BaseSpec' {
                 given('I go to the home page and I do not have an account', function() {
                     when('I click register, fill in the form, and click `Register`', function() {
                         then('I should be logged in and see my Events dashboard', function() {
-                            fail('test not implemented yet');
+                            selenium.open('/');
+                            expect(selenium.getTitle()).toBe('Event Planning — A Legacy Testing Worksho');
                         });
                     });
                 });
