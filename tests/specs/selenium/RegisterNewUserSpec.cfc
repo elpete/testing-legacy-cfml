@@ -18,6 +18,13 @@ component extends='cfselenium.BaseSpec' {
                             selenium.click('link=Register');
                             selenium.waitForPageToLoad('30000');
                             expect(selenium.isTextPresent('Register')).toBeTrue();
+                            selenium.type('name=email', 'bob@example.com');
+                            selenium.type('name=password', 'mY@w3s0m3P2ssw0rD');
+                            selenium.type('name=password_confirmation', 'mY@w3s0m3P2ssw0rD');
+                            selenium.click('name=register');
+                            selenium.waitForPageToLoad('30000');
+                            expect(selenium.isTextPresent('Events')).toBeTrue();
+                            expect(selenium.isTextPresent('Log Out')).toBeTrue();
                         });
                     });
                 });
