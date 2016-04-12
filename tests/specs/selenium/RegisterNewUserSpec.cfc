@@ -1,6 +1,6 @@
 component extends='cfselenium.BaseSpec' {
     function beforeAll() {
-        super.beforeAll('http://#CGI.http_host#');
+        super.beforeAll('http://#CGI.HTTP_HOST#');
     }
 
     function afterAll() {
@@ -8,6 +8,16 @@ component extends='cfselenium.BaseSpec' {
     }
 
     function run() {
-
+        feature('Registering for the site', function() {
+            scenario('A new user registering successfully for the site', function() {
+                given('I go to the home page and I do not have an account', function() {
+                    when('I click register, fill in the form, and click `Register`', function() {
+                        then('I should be logged in and see my Events dashboard', function() {
+                            fail('test not implemented yet');
+                        });
+                    });
+                });
+            });
+        });
     }
 }
