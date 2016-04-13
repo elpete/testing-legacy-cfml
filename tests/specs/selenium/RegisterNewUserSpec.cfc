@@ -14,6 +14,16 @@ component extends='cfselenium.BaseSpec' {
         queryExecute("DELETE FROM users WHERE email = 'bob@example.com'");
     }
 
+    /**
+    * @afterEach
+    */
+    function logOutIfNeeded() {
+        selenium.open('/');
+        if (selenium.isElementPresent('link=Log Out')) {
+            selenium.click('link=Log Out');
+        }
+    }
+
     function run() {
         feature('Registering for the site', function() {
             scenario('A new user registering successfully for the site', function() {
