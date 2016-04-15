@@ -9,13 +9,17 @@
 	<cffunction name="onRequestStart">
 		<cfargument name="targetPage" />
 
-		<cfinclude template="ApplicationHeader.cfm" />
+		<cfif listLast(arguments.targetPage, ".") NEQ "cfc">
+			<cfinclude template="ApplicationHeader.cfm" />
+		</cfif>
 	</cffunction>
 
 	<cffunction name="onRequestEnd">
 		<cfargument name="targetPage" />
 
-		<cfinclude template="ApplicationFooter.cfm" />
+		<cfif listLast(arguments.targetPage, ".") NEQ "cfc">
+			<cfinclude template="ApplicationFooter.cfm" />
+		</cfif>
 	</cffunction>
 
 </cfcomponent>

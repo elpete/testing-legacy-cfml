@@ -52,15 +52,19 @@
 			)
 		</cfquery>
 
-		<cfreturn />
-	</cffunction>
-
-	<cffunction name="resendInvite">
-		<cfargument name="id" />
-
 		<!--- email logic here --->
 
 		<cfreturn />
+	</cffunction>
+
+	<cffunction name="resendInvite" access="remote" returnformat="json">
+		<cfargument name="id" />
+
+		<cfset rsvpQuery = getRSVPById(arguments.id) />
+
+		<!--- email logic here --->
+
+		<cfreturn rsvpQuery.email />
 	</cffunction>
 
 	<cffunction name="respondToInvitation">

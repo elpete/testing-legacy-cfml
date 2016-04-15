@@ -101,9 +101,8 @@
 									</div>
 								</td>
 								<td>
-									<form method="POST" action="#CGI.SCRIPT_NAME#">
+									<form class="resend-form" method="POST" action="#CGI.SCRIPT_NAME#">
 										<input type="hidden" name="rsvp_id" value="#rsvps.id#" />
-										<input type="hidden" name="event_id" value="#url.event#" />
 										<button type="submit" name="resend" class="btn btn-sm btn-default">Resend</button>
 									</form>
 								</td>
@@ -115,3 +114,25 @@
 		</cfif>
 	</cfif>
 </cfoutput>
+
+<script>
+$(document).ready(function() {
+	$('.resend-form').on('submit', function(e) {
+		e.preventDefault();
+		var id = $(this).find('[name=rsvp_id]').val();
+		$.ajax({
+			url: '/cfcs/RSVP.cfc?method=resendInvite',
+			data: {
+				id: id
+			},
+			dataType: 'json'
+		})
+			.done(function onSuccess(email) {
+				alert('Invitation to ' + email + ' re-sent!');
+			})
+			.fail(function onError(err) {
+				console.error(err);
+			});
+	});
+});
+</script>
