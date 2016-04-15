@@ -30,6 +30,7 @@ component extends='cfselenium.BaseSpec' {
                             selenium.click('identifier=rsvp-button');
                             selenium.waitForPageToLoad('2000');
                             expect(selenium.getLocation()).toBe('http://#CGI.http_host#/');
+                            expect(selenium.isElementPresent('css=.alert')).toBeTrue('Could not find an alert box');
                         });
                     });
                 });
