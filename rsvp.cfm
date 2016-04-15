@@ -32,6 +32,8 @@
 		<cfset createObject("component", "cfcs.RSVP").respondToInvitation(rsvp_id, rsvp) />
 		<cfset rsvp = createObject("component", "cfcs.RSVP").getRSVPById(rsvp_id) />
 
+		<cfset session.messages = ['Sucessfully recorded your RSVP'] />
+
 		<cflocation url="/" addtoken="false" />
 	</cfif>
 </cfoutput>
