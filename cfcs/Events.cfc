@@ -6,7 +6,7 @@
 		<cfquery name="events">
 			SELECT *
 			FROM events
-			WHERE user_id = <cfqueryparam value="#arguments.user_id#" cfsqltype="cf_sql_varchar" />
+			WHERE created_by_user_id = <cfqueryparam value="#arguments.user_id#" cfsqltype="cf_sql_varchar" />
 		</cfquery>
 
 		<cfreturn events />

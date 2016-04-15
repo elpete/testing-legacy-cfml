@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-default">RSVP</button>
+				<button type="submit" id="rsvp-button" class="btn btn-default">RSVP</button>
 			</div>
 		</form>
 	<cfelse>

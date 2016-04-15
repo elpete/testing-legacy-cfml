@@ -30,7 +30,7 @@
 		</div>
 		<div class="form-group">
 			<label for="date" class="control-label">Event Date</label>
-			<input type="date" id="date" name="date" class="form-control" />
+			<input type="text" id="date" name="date" class="form-control" />
 		</div>
 		<div class="form-group">
 			<button type="submit" name="create" class="btn btn-default">Create Event</button>
