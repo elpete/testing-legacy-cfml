@@ -32,6 +32,6 @@
 		<cfset createObject("component", "cfcs.RSVP").respondToInvitation(rsvp_id, rsvp) />
 		<cfset rsvp = createObject("component", "cfcs.RSVP").getRSVPById(rsvp_id) />
 
-		<cflocation url="/view-event.cfm?event=#rsvp.event_id#" addtoken="false" />
+		<cflocation url="/" addtoken="false" />
 	</cfif>
 </cfoutput>
