@@ -19,7 +19,8 @@
 			SELECT
 				IFNULL(SUM(CASE WHEN rsvp = "Pending" THEN 1 ELSE 0 END), 0) AS pending_count,
 				IFNULL(SUM(CASE WHEN rsvp = "Accepted" THEN 1 ELSE 0 END), 0) AS accepted_count,
-				IFNULL(SUM(CASE WHEN rsvp = "Rejected" THEN 1 ELSE 0 END), 0) AS rejected_count
+				IFNULL(SUM(CASE WHEN rsvp = "Rejected" THEN 1 ELSE 0 END), 0) AS rejected_count,
+				IFNULL(COUNT(rsvp), 0) AS total_count
 			FROM rsvps
 			WHERE event_id = <cfqueryparam value="#arguments.id#" cfsqltype="cf_sql_numeric" />
 		</cfquery>

@@ -65,9 +65,18 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th class="text-center">Pending</th>
-								<th class="text-center">Coming</th>
-								<th class="text-center">Not Coming</th>
+								<th class="text-center">
+									<a id="pending-filter" href="##">Pending</a>
+								</th>
+								<th class="text-center">
+									<a id="coming-filter" href="##">Coming</a>
+								</th>
+								<th class="text-center">
+									<a id="notcoming-filter" href="##">Not Coming</a>
+								</th>
+								<th class="text-center">
+									<a id="total-filter" href="##">Total</a>
+								</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,6 +84,7 @@
 								<td class="text-center">#RSVPCounts.pending_count#</td>
 								<td class="text-center">#RSVPCounts.accepted_count#</td>
 								<td class="text-center">#RSVPCounts.rejected_count#</td>
+								<td class="text-center">#RSVPCounts.total_count#</td>
 							</tr>
 						</tbody>
 					</table>
@@ -82,12 +92,14 @@
 			</div>
 
 			<div class="row">
-				<table class="table table-hover">
+				<table id="rsvps-table" class="table table-hover">
 					<thead>
-						<th>Email</th>
-						<th>RSVP</th>
-						<th style="width: 15%;">Respond</th>
-						<th style="width: 10%;"></th>
+						<tr>
+							<th>Email</th>
+							<th>RSVP</th>
+							<th style="width: 15%;">Respond</th>
+							<th style="width: 10%;"></th>
+						</tr>
 					</thead>
 					<tbody>
 						<cfloop query="rsvps">
@@ -133,6 +145,49 @@ $(document).ready(function() {
 			.fail(function onError(err) {
 				console.error(err);
 			});
+	});
+
+	$('#pending-filter').on('click', function(e) {
+		e.preventDefault();
+		$('#rsvps-table tbody tr').each(function(index, row) {
+			var rowEl = $(row);
+			rowEl.show();
+			var type = rowEl.children('td')[1].innerHTML;
+			if (type !== 'Pending') {
+				rowEl.hide();
+			}
+		});
+	});
+
+	$('#coming-filter').on('click', function(e) {
+		e.preventDefault();
+		$('#rsvps-table tbody tr').each(function(index, row) {
+			var rowEl = $(row);
+			rowEl.show();
+			var type = rowEl.children('td')[1].innerHTML;
+			if (type !== 'Accepted') {
+				rowEl.hide();
+			}
+		});
+	});
+
+	$('#notcoming-filter').on('click', function(e) {
+		e.preventDefault();
+		$('#rsvps-table tbody tr').each(function(index, row) {
+			var rowEl = $(row);
+			rowEl.show();
+			var type = rowEl.children('td')[1].innerHTML;
+			if (type !== 'Rejected') {
+				rowEl.hide();
+			}
+		});
+	});
+
+	$('#total-filter').on('click', function(e) {
+		e.preventDefault();
+		$('#rsvps-table tbody tr').each(function(index, row) {
+			$(row).show();
+		});
 	});
 });
 </script>
