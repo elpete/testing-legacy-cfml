@@ -103,7 +103,7 @@
 					</thead>
 					<tbody>
 						<cfloop query="rsvps">
-							<tr>
+							<tr class="rsvp-row">
 								<td>#rsvps.email#</td>
 								<td>#rsvps.rsvp#</td>
 								<td>
