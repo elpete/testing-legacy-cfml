@@ -6,6 +6,10 @@
 		} />
 	<cfset this.datasource = "eventplanning" />
 
+	<cffunction name="onApplicationStart">
+		<cfset application.flashMessage = new cfcs.FlashMessage() />
+	</cffunction>
+
 	<cffunction name="onRequestStart">
 		<cfargument name="targetPage" />
 

@@ -15,4 +15,8 @@ component {
         connectionString: 'jdbc:mysql://localhost:3306/eventplanning?user=root&useUnicode=true&characterEncoding=UTF-8&useLegacyDatetimeCode=true'
     };
     this.datasource = 'eventplanning';
+
+    function onApplicationStart() {
+        application.flashMessage = new root.cfcs.FlashMessage();
+    }
 }

@@ -42,16 +42,5 @@
 
 
         <div id="app-container" class="container">
-            <cfif structKeyExists(session, "messages")>
-                <cfloop array="#session.messages#" index="message">
-                    <cfif isSimpleValue(message)>
-                        <cfset message = { type = "info", text = message } />
-                    </cfif>
-                    <div class="alert alert-dismissable alert-#message.type#" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        #message.text#
-                    </div>
-                </cfloop>
-                <cfset session.messages = [] />
-            </cfif>
+            #application.flashMessage.render()#
 </cfoutput>
